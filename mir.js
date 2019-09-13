@@ -1,5 +1,3 @@
-// TODO: Convert to a markdown-it plugin
-
 /**
  * Replaces image URLs in a markdown string.
  * 
@@ -11,10 +9,10 @@
  * @returns {Promise<string>} The modified markdown in HTML format.
  */
 async function mir (md, markdown, replacer) {
-  const parsed = md.parse(markdown, { references: {} })
+  const parsed = md.parse(markdown, { references: {} });
 
-  await replaceImageUrls(parsed, replacer)
-  return md.renderer.render(parsed, {})
+  await replaceImageUrls(parsed, replacer);
+  return md.renderer.render(parsed, {});
 }
 
 /**
@@ -25,18 +23,18 @@ async function mir (md, markdown, replacer) {
 async function replaceImageUrls (markdown, replacer) {
   // For every token in the markdown
   for (let i = 0; i < markdown.length; i++) {
-    const token = markdown[i]
-    const url = getImageUrl(token)
+    const token = markdown[i];
+    const url = getImageUrl(token);
 
     // If the token has an image URL, replace it
     if (url) {
-      const newUrl = await replacer(url)
-      token.attrSet('src',  newUrl || url)
+      const newUrl = await replacer(url);
+      token.attrSet('src',  newUrl || url);
     }
 
     // Replace all URLs of the token's children as well
     if (token.children) {
-      await replaceImageUrls(token.children, replacer)
+      await replaceImageUrls(token.children, replacer);
     } 
   }
 }
@@ -49,13 +47,13 @@ async function replaceImageUrls (markdown, replacer) {
  */
 function getImageUrl (token) {
   if (token.type !== 'image') {
-    return null
+    return null;
   }
 
-  return token.attrGet('src')
+  return token.attrGet('src');
 }
 
-module.exports = mir
+module.exports = mir;
 
 /**
  * @typedef {Object} Token

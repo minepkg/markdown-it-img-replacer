@@ -9,7 +9,8 @@
     "jasonhaxstuff"
   ],
   "scripts": {
-    "test": "mocha --exit"
+    "test": "mocha --exit",
+    "lint": "eslint --fix ./test/mir.spec.js mir.js"
   },
   "devDependencies": {
     "chai": "^4.2.0",
