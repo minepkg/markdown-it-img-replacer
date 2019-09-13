@@ -1,5 +1,3 @@
-// Run npm i --no-save markdown-it before testing
-
 const { describe, it } = require('mocha');
 const { expect } = require('chai');
 
