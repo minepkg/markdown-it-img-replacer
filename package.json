@@ -1,0 +1,22 @@
+{
+  "name": "markdown-img-replacer",
+  "version": "1.0.0",
+  "description": "Replace markdown image URLs",
+  "main": "mir.js",
+  "author": "minepkg",
+  "license": "MIT",
+  "contributors": [
+    "jasonhaxstuff"
+  ],
+  "scripts": {
+    "test": "mocha --exit"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0",
+    "eslint": "^6.3.0"
+  },
+  "peerDependencies": {
+    "markdown-it": "^10.0.0"
+  }
+}
