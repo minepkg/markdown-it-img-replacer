@@ -1,56 +1,46 @@
 /**
- * Replaces image URLs in a markdown string.
- * 
- * @param {markdownit} md A markdownit instance, tailored to your project.
- * @param {string} markdown The markdown string to replace the images of.
- * @param {(url: string) => string | Promise<string>} replacer Called for every
- * image in the markdown string. The URL is replaced with the returned string.
- * 
- * @returns {Promise<string>} The modified markdown in HTML format.
- */
-async function mir (md, markdown, replacer) {
-  const parsed = md.parse(markdown, { references: {} });
-
-  await replaceImageUrls(parsed, replacer);
-  return md.renderer.render(parsed, {});
-}
-
-/**
  * @param {Token[]} markdown
  * @param {(url: string) => string | Promise<string>} replacer
  * @ignore
  */
-async function replaceImageUrls (markdown, replacer) {
-  // For every token in the markdown
-  for (let i = 0; i < markdown.length; i++) {
-    const token = markdown[i];
-    const url = getImageUrl(token);
+function replaceImageUrls(tokens, replacer) {
+  // For every token
+  const ops = tokens.map(async (token) => {
+    // fuse replacer for tokens with the image type
+    if (token.type === 'image') {
+      const url = token.attrGet('src');
 
-    // If the token has an image URL, replace it
-    if (url) {
-      const newUrl = await replacer(url);
-      token.attrSet('src',  newUrl || url);
+      // If the token has an image URL, replace it
+      if (url) {
+        const newUrl = await replacer(url);
+        token.attrSet('src', newUrl || url);
+      }
     }
 
-    // Replace all URLs of the token's children as well
+    // travel down the tree: find & replace all URLs of the token's children as well
     if (token.children) {
       await replaceImageUrls(token.children, replacer);
-    } 
-  }
+    }
+  });
+
+  return Promise.all(ops);
 }
 
 /**
- * Gets the image URL of a markdown token, if any.
- * @param {Token} token The markdown token.
- * @returns {string | null} The image URL. Null if there is none.
- * @ignore
+ * Replaces image URLs in a markdown string.
+ *
+ * @param {markdownit} md A markdownit instance, tailored to your project.
+ * @param {string} markdown The markdown string to replace the images of.
+ * @param {(url: string) => string | Promise<string>} replacer Called for every
+ * image in the markdown string. The URL is replaced with the returned string.
+ *
+ * @returns {Promise<string>} The modified markdown in HTML format.
  */
-function getImageUrl (token) {
-  if (token.type !== 'image') {
-    return null;
-  }
+async function mir(md, markdown, replacer) {
+  const parsed = md.parse(markdown, { references: {} });
 
-  return token.attrGet('src');
+  await replaceImageUrls(parsed, replacer);
+  return md.renderer.render(parsed, {});
 }
 
 module.exports = mir;
