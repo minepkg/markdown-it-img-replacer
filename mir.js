@@ -4,7 +4,7 @@
  * Replaces image URLs in a markdown string.
  * 
  * @param {markdownit} md A markdownit instance, tailored to your project.
- * @param {string} markdown The markdown to replace the images of.
+ * @param {string} markdown The markdown string to replace the images of.
  * @param {(url: string) => string | Promise<string>} replacer Called for every
  * image in the markdown string. The URL is replaced with the returned string.
  * 
