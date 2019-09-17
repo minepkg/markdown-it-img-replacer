@@ -1,6 +1,8 @@
 # markdown-img-replacer
 Replace markdown image URLs.
 
+[![Actions Status](https://github.com/minepkg/markdown-img-replacer/workflows/Node%20CI/badge.svg)](https://github.com/minepkg/markdown-img-replacer/actions)
+
 ## Usage
 ```js
 const md = require('markdown-it')()
