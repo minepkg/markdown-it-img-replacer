@@ -6,7 +6,8 @@
   "author": "minepkg",
   "license": "MIT",
   "contributors": [
-    "jasonhaxstuff"
+    "jasonhaxstuff",
+    "Filip Weiss <filip@minepkg.io>"
   ],
   "scripts": {
     "test": "mocha --exit",
