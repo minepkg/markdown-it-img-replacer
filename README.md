@@ -1,12 +1,13 @@
-# markdown-img-replacer
+# markdown-it-img-replacer
 Replace markdown image URLs.
 
-[![Actions Status](https://github.com/minepkg/markdown-img-replacer/workflows/Node%20CI/badge.svg)](https://github.com/minepkg/markdown-img-replacer/actions)
+[![Actions Status](https://github.com/minepkg/markdown-it-img-replacer/workflows/Node%20CI/badge.svg)](https://github.com/minepkg/markdown-it-img-replacer/actions)
 
 ## Usage
+
 ```js
 const md = require('markdown-it')()
-const mir = require('markdown-img-replacer')
+const mir = require(' markdown-it-img-replacer')
 
 const html = await mir(md, 'Image: ![alt text](https://example.com/image.png)', url => url + '?size=512')
 

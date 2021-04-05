@@ -1,7 +1,7 @@
 {
-  "name": "markdown-img-replacer",
+  "name": "markdown-it-img-replacer",
   "version": "1.0.0",
-  "description": "Replace markdown image URLs",
+  "description": "Replace image URLs with markdown it",
   "main": "mir.js",
   "author": "minepkg",
   "license": "MIT",
