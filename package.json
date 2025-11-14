@@ -15,11 +15,11 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "eslint": "^7.4.0",
-    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint": "^9.39.1",
+    "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.20.2",
     "markdown-it": "^12.0.0",
-    "mocha": "^8.3.2"
+    "mocha": "^11.7.5"
   },
   "peerDependencies": {
     "markdown-it": "^12.0.0"
